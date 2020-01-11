@@ -18,9 +18,6 @@
     <None Include="IM_A_MIDI_LITTLE_BITCH.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Meteor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,14 +36,14 @@
     <ClInclude Include="Tweener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Animation_Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Meteor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tweener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation_Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

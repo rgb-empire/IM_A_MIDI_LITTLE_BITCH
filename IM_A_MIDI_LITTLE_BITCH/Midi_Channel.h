@@ -1,14 +1,16 @@
 #pragma once
 
 #include <vector>
-#include "Fader.h"
-#include "Animation.h"
+#include <FastLED.h>
 #include "Light_Show.h"
+#include "Animation_Controller.h"
 #include "Tweener.h"
 
 class Midi_Channel
 {
 protected:
+
+	friend class Animation_Controller;
 
 	struct shadow {
 		int start;
@@ -52,5 +54,6 @@ public:
 	void render(const fract16 alpha = 0);
 
 	void set_program(const byte new_program);
+
 };
 

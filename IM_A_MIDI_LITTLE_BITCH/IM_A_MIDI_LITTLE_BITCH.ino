@@ -5,43 +5,47 @@
 */
 
 // the setup function runs once when you press reset or power the board
-#include <MIDI.h>
 
-#include <power_mgt.h>
-#include <platforms.h>
-#include <pixeltypes.h>
-#include <pixelset.h>
-#include <noise.h>
-#include <lib8tion.h>
-#include <led_sysdefs.h>
-#include <hsv2rgb.h>
-#include <fastspi_types.h>
-#include <fastspi_ref.h>
-#include <fastspi_nop.h>
-#include <fastspi_dma.h>
-#include <fastspi_bitbang.h>
-#include <fastspi.h>
-#include <fastpin.h>
-#include <fastled_progmem.h>
-#include <fastled_delay.h>
-#include <fastled_config.h>
+#include <vector>
+#include <Arduino.h>
 #include <FastLED.h>
-#include <dmx.h>
-#include <cpp_compat.h>
-#include <controller.h>
-#include <colorutils.h>
-#include <colorpalettes.h>
-#include <color.h>
-#include <chipsets.h>
-#include <bitswap.h>
+#include <MIDI.h>
 
 #define NUM_LEDS 2304
 
+
+
+#include "Details.h"
+#include "Midi_Channel.h"
+#include "Animation_Controller.h"
+#include "Light_Show.h"
+
+std::vector<Midi_Channel*> channels;
+std::vector<Animation_Controller*> controllers;
+
+CRGBArray<NUM_LEDS> leds;
+
 void setup() {
-    
+	for (int i = 0; i < 16; i++)
+	{
+		channels.push_back(new Midi_Channel());
+		controllers.push_back(new Animation_Controller(channels.back()));
+	}
+
+	Details::loop();
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-  
+	Details::loop();
+
+	for (auto& channel : channels)
+	{
+		channel->loop();
+	}
+
+	for (auto& controller : controllers)
+	{
+		controller->loop();
+	}
 }

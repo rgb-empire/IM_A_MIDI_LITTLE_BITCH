@@ -1,12 +1,12 @@
 #include "Details.h"
-#include "Tweener.h"
+
 long Details::now = 0;
 
 int bpm = 120;
 int Details::beat_time = int(60000 / Details::bpm);
 int last_beat, next_beat = 0;
 
-void Details::update()
+void Details::loop()
 {
 	now = millis();
 

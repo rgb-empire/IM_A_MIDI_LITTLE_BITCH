@@ -1,23 +1,28 @@
 #include "Light_Show.h"
 #include "NOW.h"
 
-Light_Show::Light_Show()
-	:num_leds(G_NUM_LEDS)
+void Light_Show::init(int num_channels)
 {
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < num_channels; i++)
 	{
-		channels.push_back(Midi_Channel(num_leds));
+		channels.push_back(new Midi_Channel());
+		controllers.push_back(new Animation_Controller(channels.back()));
 	}
 
 	Details::update();
-
-}
-
-Light_Show::~Light_Show()
-{
 }
 
 void Light_Show::loop()
 {
 	Details::update();
+
+	for (auto& channel : channels)
+	{
+		channel->loop();
+	}
+
+	for (auto& controller : controllers)
+	{
+		controller->loop();
+	}
 }

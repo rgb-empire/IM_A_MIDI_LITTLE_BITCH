@@ -1,4 +1,5 @@
 #include "Midi_Channel.h"
+#include "Light_Show.h"
 
 Midi_Channel::Midi_Channel()
 {
@@ -12,7 +13,6 @@ Midi_Channel::~Midi_Channel()
 void Midi_Channel::loop()
 {
 	Animation::animations[program](this);
-
 }
 
 void Midi_Channel::map_leds(const int start, const int end)
