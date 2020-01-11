@@ -1,26 +1,26 @@
 #include "Details.h"
-
+#include "Tweener.h"
 long Details::now = 0;
 
-Fader<accum1616> Details::bpm = Fader<accum1616>(120 * UINT16_MAX);
-Fader<int> Details::beat_time = Fader<int>(60000 / Details::bpm.cur_value);
+int bpm = 120;
+int Details::beat_time = int(60000 / Details::bpm);
 
 void Details::update()
 {
 	now = millis();
 
-	beat_time.cur_value = 60000 / bpm.cur_value;
+	beat_time = 60000 / bpm;
 
-	last_beat.cur_value = now - now % beat_time.cur_value;
-	next_beat.cur_value = last_beat.cur_value + beat_time.cur_value;
+	last_beat = now - now % beat_time;
+	next_beat = last_beat + beat_time;
 }
 
-void Details::update_bpm(accum1616 new_bpm)
+void Details::update_bpm(int new_bpm, int duration)
 {
-	bpm.fade(new_bpm);
+	Tweener::tween(bpm, new_bpm, duration);
 }
 
 int Details::beat_duration(const int new_num_beats)
 {
-	return beat_time.cur_value * new_num_beats;
+	return beat_time * new_num_beats;
 }
