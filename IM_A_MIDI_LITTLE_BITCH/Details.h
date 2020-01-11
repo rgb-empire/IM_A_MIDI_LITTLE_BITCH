@@ -7,14 +7,14 @@ class Details
 public:
 	static long now;
 
-	accum1616 bpm;
-	unsigned int beat_time;
+	static int bpm;
+	static int beat_time;
 
-	unsigned int last_beat;
-	unsigned int next_beat;
+	static unsigned int last_beat;
+	static unsigned int next_beat;
 	
 	static void update();
-	static void update_bpm(accum1616 new_bpm);
+	static void update_bpm(int new_bpm, int duration = 2000);
 	static int beat_duration(const int new_num_beats = 1);
+	static int duration;
 };
-
