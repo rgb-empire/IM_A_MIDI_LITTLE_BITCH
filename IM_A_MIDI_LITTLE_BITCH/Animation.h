@@ -9,7 +9,7 @@ typedef void(*Animation_Func)(Midi_Channel channel);
 class Animation
 {
 protected:
-	CRGBSet leds;
+	//CRGBSet leds;
 
 public:
 

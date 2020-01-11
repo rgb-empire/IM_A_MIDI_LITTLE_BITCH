@@ -11,8 +11,7 @@ Midi_Channel::~Midi_Channel()
 
 void Midi_Channel::loop()
 {
-	Animation::animations[program.old_value](this);
-
+	Animation::animations[program](this);
 
 }
 
@@ -21,7 +20,7 @@ void Midi_Channel::map_leds(const int start, const int end)
 	shadows.push_back({start, end, abs(end - start)});
 }
 
-void Midi_Channel::render(const fract8 alpha)
+void Midi_Channel::render(const fract16 alpha)
 {
 	for (shadow & shadow : shadows)
 	{
@@ -29,14 +28,14 @@ void Midi_Channel::render(const fract8 alpha)
 		{
 			for (int i = 0; i < shadow.len; i++)
 			{
-				Light_Show::leds[shadow.start + i] = leds[i];
+				Light_Show::leds[shadow.start + i] = leds[shadow.start + i];
 			}
 		}
 		else //backward
 		{
 			for (int i = 0; i < shadow.len; i++)
 			{
-				Light_Show::leds[shadow.start - i] = leds[i];
+				Light_Show::leds[shadow.end - i] = leds[shadow.start + i];
 			}
 		}
 	}
@@ -49,5 +48,5 @@ void Midi_Channel::set_program(const byte new_program)
 
 	fade_fract = 0;
 
-	Tweener::
+	Tweener::tween(fade_fract, UINT16_MAX);
 }

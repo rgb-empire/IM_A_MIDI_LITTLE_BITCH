@@ -18,9 +18,6 @@
     <None Include="IM_A_MIDI_LITTLE_BITCH.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,9 +30,6 @@
     <ClInclude Include="Light_Show.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Fader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NOW.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,6 +37,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tweener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,9 +54,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Light_Show.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NOW.cpp">

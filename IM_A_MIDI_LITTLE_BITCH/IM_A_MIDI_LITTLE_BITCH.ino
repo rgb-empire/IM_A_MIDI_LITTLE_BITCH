@@ -38,7 +38,7 @@
 #define NUM_LEDS 2304
 
 void setup() {
-
+    
 }
 
 // the loop function runs over and over again until power down or reset

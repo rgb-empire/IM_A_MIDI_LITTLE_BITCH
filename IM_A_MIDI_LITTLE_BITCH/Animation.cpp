@@ -1,9 +1,9 @@
 #include "Animation.h"
 
 Animation_Func Animation::animations[] = {
-	Animation::meteor,
-	Animation::wipe,
-	Animation::color_wave
+	Animation::meteor//,
+	//Animation::wipe,
+	//Animation::color_wave
 };
 
 Animation::Animation()

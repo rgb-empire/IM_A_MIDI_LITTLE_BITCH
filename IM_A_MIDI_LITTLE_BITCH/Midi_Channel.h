@@ -22,7 +22,7 @@ protected:
 
 	byte program;
 	byte old_program;
-	fract16 fade_fract;
+	int fade_fract;
 
 	byte note_on_number;
 	byte note_on_velocity;
@@ -49,7 +49,7 @@ public:
 	void loop();
 
 	void map_leds(const int start, const int end);
-	void render(const fract8 alpha = 0);
+	void render(const fract16 alpha = 0);
 
 	void set_program(const byte new_program);
 };
