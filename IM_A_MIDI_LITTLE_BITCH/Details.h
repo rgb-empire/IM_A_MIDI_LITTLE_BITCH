@@ -10,6 +10,8 @@ public:
 	accum1616 bpm;
 	unsigned int beat_time;
 
+	//test test
+
 	unsigned int last_beat;
 	unsigned int next_beat;
 	
