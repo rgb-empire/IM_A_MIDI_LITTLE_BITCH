@@ -10,7 +10,7 @@ class Tweener
 {
 public:
 	
-	static void tween(int& target, const int& new_val, const unsigned int duration = 2000, const Ease ease = LINEAR,  const Ease_Type type = INOUT);
+	static void tween(int* target, const int& new_val, const unsigned int duration = 2000, const Ease ease = LINEAR,  const Ease_Type type = INOUT);
 
 	static void update();
 
@@ -18,7 +18,7 @@ protected:
 	typedef int (*Easing_Function)(float, int, int, int, int, Ease_Type);
 
 	struct Tween {
-		int& target;
+		int* target;
 		int old_val;
 		int new_val;
 		int delta_val;

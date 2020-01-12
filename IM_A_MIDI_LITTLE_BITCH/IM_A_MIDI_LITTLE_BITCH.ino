@@ -13,8 +13,6 @@
 
 #define NUM_LEDS 2304
 
-
-
 #include "Details.h"
 #include "Midi_Channel.h"
 #include "Animation_Controller.h"

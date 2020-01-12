@@ -11,14 +11,14 @@ Tweener::Easing_Function Tweener::easing_function_list[] =
 	bounce
 };
 
-void Tweener::tween(int& target, const int& new_val, const unsigned int duration, const Ease ease, const Ease_Type type)
+void Tweener::tween(int* target, const int& new_val, const unsigned int duration, const Ease ease, const Ease_Type type)
 {
 	Tween* new_tween = new Tween(
 	{
 		target,
-		target,
+		*target,
 		new_val,
-		new_val - target,
+		new_val - *target,
 		duration,
 		Details::now,
 		Details::now + duration,
@@ -52,7 +52,7 @@ void Tweener::update()
 
 		if (elapsed_time > it[0]->duration)
 		{
-			it[0]->target = it[0]->new_val;
+			*it[0]->target = it[0]->new_val;
 			it = tweens.erase(it);
 		}
 		else
@@ -67,7 +67,7 @@ void Tweener::update()
 
 			Ease_Type temp_type = it[0]->type != INOUT ? it[0]->type : percent_complete < 0.5 ? IN : OUT;
 
-			it[0]->target = it[0]->ease_func(percent_complete, elapsed_time, it[0]->old_val, it[0]->new_val, it[0]->duration, temp_type);
+			*it[0]->target = it[0]->ease_func(percent_complete, elapsed_time, it[0]->old_val, it[0]->new_val, it[0]->duration, temp_type);
 
 			++it;
 		}
@@ -89,7 +89,7 @@ int sine(float percent_complete, int old_val, int new_val, int delta_val, int mo
 {
 	return old_val + delta_val * sin(PI / 2 * percent_complete);
 }
-//y = elastic_cruve(x)
+//y = elastic_curve(x)
 int elastic(float percent_complete, int old_val, int new_val, int delta_val, int modifier = 2 * PI / 4.5, Ease_Type type = IN)
 {
 	int elastic_const = modifier;
