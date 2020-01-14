@@ -113,6 +113,7 @@
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="IM_A_MIDI_LITTLE_BITCH.ino">
       <FileType>CppCode</FileType>
     </None>

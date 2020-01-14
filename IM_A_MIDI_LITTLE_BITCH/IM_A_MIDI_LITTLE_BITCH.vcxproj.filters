@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="IM_A_MIDI_LITTLE_BITCH.ino" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Midi_Channel.h">
