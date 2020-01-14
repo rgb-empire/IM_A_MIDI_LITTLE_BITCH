@@ -1,21 +1,10 @@
 #pragma once
 
-#include <FastLED.h>
-#include <vector>
-
-#include "Midi_Channel.h"
-#include "Details.h"
-#include "Tweener.h"
+#include "Global_Definitions.h"
 
 class Animation_Controller
 {
 public:
-	enum Animation_Name {
-		NONE,
-		COLOR,
-		WIPE,
-		STROBE
-	};
 
 	struct Animation
 	{

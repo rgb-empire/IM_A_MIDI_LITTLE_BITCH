@@ -1,6 +1,8 @@
 #pragma once
 
-class Details
+#include "Global_Definitions.h"
+
+class Velocity
 {
 public:
 	static long now;
@@ -8,8 +10,8 @@ public:
 	static int bpm;
 	static int beat_time;
 
-	static unsigned int last_beat;
-	static unsigned int next_beat;
+	static long last_beat;
+	static long next_beat;
 	
 	static void loop();
 	static void update_bpm(int new_bpm, int duration = 2000);

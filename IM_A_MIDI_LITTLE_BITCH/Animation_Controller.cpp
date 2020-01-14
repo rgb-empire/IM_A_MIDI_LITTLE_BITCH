@@ -75,7 +75,7 @@ void Animation_Controller::color(Animation* ani, Midi_Channel* channel)
 {
 	CHSV color = CHSV(beat8(2), beat8(1), ani->brite);
 
-	for (auto& led : channel->leds)
+	for (auto& led : channel->my_leds)
 	{
 		led += color;
 	}

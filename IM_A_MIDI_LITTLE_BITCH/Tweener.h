@@ -1,16 +1,12 @@
 #pragma once
 
-#include <vector>
-#include "Details.h"
-
-enum Ease { LINEAR, SINE, QUAD, CUBIC, QUART, QUINT };
-enum Ease_Type { IN, OUT, INOUT };
+#include "Global_Definitions.h"
 
 class Tweener
 {
 public:
 	
-	static void tween(int* target, const int& new_val, const unsigned int duration = 2000, const Ease ease = LINEAR,  const Ease_Type type = INOUT);
+	static void tween(int* target, const int& new_val, const int duration = 2000, const Ease ease = LINEAR,  const Ease_Type type = INOUT);
 
 	static void update();
 
@@ -22,9 +18,9 @@ protected:
 		int old_val;
 		int new_val;
 		int delta_val;
-		unsigned int duration;
-		unsigned long start_time;
-		unsigned long end_time;
+		int duration;
+		long start_time;
+		long end_time;
 
 		Ease ease;
 		Ease_Type type;

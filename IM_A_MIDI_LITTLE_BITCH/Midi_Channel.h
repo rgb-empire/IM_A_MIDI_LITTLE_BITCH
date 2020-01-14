@@ -1,10 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <FastLED.h>
-#include "Light_Show.h"
-#include "Animation_Controller.h"
-#include "Tweener.h"
+#include "Global_Definitions.h"
 
 class Midi_Channel
 {
@@ -18,7 +14,7 @@ protected:
 		int len;
 	};
 
-	CRGBArray<NUM_LEDS> leds;
+	CRGBArray<NUM_LEDS> my_leds;
 	
 	std::vector<shadow> shadows;
 

@@ -5,44 +5,28 @@
 */
 
 // the setup function runs once when you press reset or power the board
-
-#include <vector>
-#include <Arduino.h>
-#include <FastLED.h>
-#include <MIDI.h>
-
-#define NUM_LEDS 2304
-
-#include "Details.h"
-#include "Midi_Channel.h"
-#include "Animation_Controller.h"
-#include "Light_Show.h"
-
-std::vector<Midi_Channel*> channels;
-std::vector<Animation_Controller*> controllers;
-
-CRGBArray<NUM_LEDS> leds;
+#include "Global_Definitions.h"
 
 void setup() {
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < NUM_MIDI_CHANNELS; i++)
 	{
-		channels.push_back(new Midi_Channel());
-		controllers.push_back(new Animation_Controller(channels.back()));
+		gchannels.push_back(new Midi_Channel());
+		gcontrollers.push_back(new Animation_Controller(gchannels.back()));
 	}
 
-	Details::loop();
+	Velocity::loop();
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	Details::loop();
+	Velocity::loop();
 
-	for (auto& channel : channels)
+	for (auto& channel : gchannels)
 	{
 		channel->loop();
 	}
 
-	for (auto& controller : controllers)
+	for (auto& controller : gcontrollers)
 	{
 		controller->loop();
 	}
