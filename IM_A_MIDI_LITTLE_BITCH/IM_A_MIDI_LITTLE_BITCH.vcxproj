@@ -119,7 +119,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Animation_Controller.h" />
+    <ClInclude Include="Solid_Color.h" />
     <ClInclude Include="Universe.h" />
     <ClInclude Include="Easing_Functions.h" />
     <ClInclude Include="Midi_Controller.h" />
@@ -129,8 +131,10 @@
     <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animation_Controller.cpp" />
     <ClCompile Include="Global_Definitions.cpp" />
+    <ClCompile Include="Solid_Color.cpp" />
     <ClCompile Include="Universe.cpp" />
     <ClCompile Include="Easing_Functions.cpp" />
     <ClCompile Include="Midi_Controller.cpp" />

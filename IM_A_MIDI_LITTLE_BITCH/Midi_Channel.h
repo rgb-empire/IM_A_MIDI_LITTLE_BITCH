@@ -6,6 +6,7 @@ class Midi_Channel
 {
 protected:
 
+	friend class Midi_Controller;
 	friend class Animation_Controller;
 
 	struct shadow {
@@ -17,6 +18,7 @@ protected:
 	CRGBArray<NUM_LEDS> my_leds;
 	
 	std::vector<shadow> shadows;
+	Animation* animation;
 
 	byte program;
 	byte old_program;
@@ -41,6 +43,8 @@ protected:
 	// TODO: Put all control change instructions here maybe
 
 public:
+	Event last_event;
+
 	Midi_Channel();
 	~Midi_Channel();
 
@@ -50,6 +54,26 @@ public:
 	void render(const fract16 alpha = 0);
 
 	void set_program(const byte new_program);
+
+protected:
+	void noteOff(byte note, byte velocity);
+	void noteOn(byte note, byte velocity);
+	//void handleAfterTouchPoly(byte channel, byte note, byte pressure);
+	//void handleControlChange(byte channel, byte number, byte value);
+	//void handleProgramChange(byte channel, byte number);
+	//void handleAfterTouchChannel(byte channel, byte pressure);
+	//void handlePitchBend(byte channel, int bend);
+	//void handleSystemExclusive(byte* array, unsigned size);
+	//void handleTimeCodeQuarterFrame(byte data);
+	//void handleSongPosition(unsigned int beats);
+	//void handleSongSelect(byte songnumber);
+	//void handleTuneRequest(void);
+	//void handleClock(void);
+	//void handleStart(void);
+	//void handleContinue(void);
+	//void handleStop(void);
+	//void handleActiveSensing(void);
+	//void handleSystemReset(void);
 
 };
 

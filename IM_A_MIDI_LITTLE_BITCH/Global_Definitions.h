@@ -9,13 +9,16 @@
 #define NUM_LEDS 2304
 #define NUM_MIDI_CHANNELS 16
 
+#define NUM_OCTAVES 12
+
 extern CRGBArray<NUM_LEDS> gleds;
 
 class Universe;
 class Tweener;
-class Event_Link;
+class Midi_Controller;
 class Midi_Channel;
 class Animation_Controller;
+class Animation;
 
 extern std::vector<Midi_Channel*> gchannels;
 extern std::vector<Animation_Controller*> gcontrollers;
@@ -30,6 +33,18 @@ enum Animation_Name {
 	STROBE
 };
 
+enum Event {
+	OFF,
+	ON,
+	POLY,
+	CC,
+	PC,
+	ATC,
+	PITCH
+};
+
+typedef void(*Animation_Func)(Event,byte,byte);
+
 #include "Universe.h"
 
 #include "Tweener.h"
@@ -37,3 +52,4 @@ enum Animation_Name {
 
 #include "Midi_Channel.h"
 #include "Animation_Controller.h"
+#include "Animation.h"

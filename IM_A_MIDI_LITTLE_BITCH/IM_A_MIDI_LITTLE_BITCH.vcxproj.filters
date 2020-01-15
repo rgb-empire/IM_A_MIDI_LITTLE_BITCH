@@ -43,6 +43,12 @@
     <ClInclude Include="Midi_Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solid_Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Midi_Channel.cpp">
@@ -64,6 +70,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Midi_Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Solid_Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
