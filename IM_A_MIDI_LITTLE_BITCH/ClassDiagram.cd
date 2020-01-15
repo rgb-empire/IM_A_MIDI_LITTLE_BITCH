@@ -1,2 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Animation_Controller">
+    <Position X="6" Y="1.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Animation_Controller::Animation">
+        <Compartments>
+          <Compartment Name="Nested Types" Collapsed="false" />
+        </Compartments>
+        <NestedTypes>
+          <Typedef Name="Animation_Controller::Animation::Animation_Func" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>Animation_Controller.h</NewMemberFileName>
+            </TypeIdentifier>
+          </Typedef>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>Animation_Controller.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAKAAAAAIABkAAgAAAEACAAAAAAAAACAE=</HashCode>
+      <FileName>Animation_Controller.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Midi_Channel">
+    <Position X="2.5" Y="1.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Midi_Channel::shadow">
+        <TypeIdentifier>
+          <NewMemberFileName>Midi_Channel.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>YgACAgAAAEAACAAAYAAIAAIEAAAAAAAAwAGQAAAQIAM=</HashCode>
+      <FileName>Midi_Channel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Universe" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAQAACAAAAEAAIAAQAAQAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Universe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

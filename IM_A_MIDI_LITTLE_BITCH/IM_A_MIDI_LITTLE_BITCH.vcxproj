@@ -122,7 +122,7 @@
     <ClInclude Include="Animation_Controller.h" />
     <ClInclude Include="Universe.h" />
     <ClInclude Include="Easing_Functions.h" />
-    <ClInclude Include="Event_Link.h" />
+    <ClInclude Include="Midi_Controller.h" />
     <ClInclude Include="Midi_Channel.h" />
     <ClInclude Include="Global_Definitions.h" />
     <ClInclude Include="Tweener.h" />
@@ -133,7 +133,7 @@
     <ClCompile Include="Global_Definitions.cpp" />
     <ClCompile Include="Universe.cpp" />
     <ClCompile Include="Easing_Functions.cpp" />
-    <ClCompile Include="Event_Link.cpp" />
+    <ClCompile Include="Midi_Controller.cpp" />
     <ClCompile Include="Midi_Channel.cpp" />
     <ClCompile Include="Tweener.cpp" />
   </ItemGroup>

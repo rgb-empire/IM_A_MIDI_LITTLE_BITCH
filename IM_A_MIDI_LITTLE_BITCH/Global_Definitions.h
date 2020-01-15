@@ -11,7 +11,7 @@
 
 extern CRGBArray<NUM_LEDS> gleds;
 
-class Velocity;
+class Universe;
 class Tweener;
 class Event_Link;
 class Midi_Channel;
@@ -33,7 +33,7 @@ enum Animation_Name {
 #include "Universe.h"
 
 #include "Tweener.h"
-#include "Event_Link.h"
+#include "Midi_Controller.h"
 
 #include "Midi_Channel.h"
 #include "Animation_Controller.h"

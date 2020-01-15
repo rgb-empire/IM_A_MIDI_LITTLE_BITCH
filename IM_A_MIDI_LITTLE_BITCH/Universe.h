@@ -2,7 +2,7 @@
 
 #include "Global_Definitions.h"
 
-class Velocity
+class Universe
 {
 public:
 	static long now;

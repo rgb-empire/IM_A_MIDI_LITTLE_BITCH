@@ -20,8 +20,8 @@ void Tweener::tween(int* target, const int& new_val, const int duration, const E
 		new_val,
 		new_val - *target,
 		duration,
-		Velocity::now,
-		Velocity::now + duration,
+		Universe::now,
+		Universe::now + duration,
 		ease,
 		type,
 		easing_function_list[ease]
@@ -48,7 +48,7 @@ void Tweener::update()
 {
 	for (std::vector<Tween*>::iterator it = tweens.begin(); it != tweens.end();)
 	{
-		int elapsed_time = Velocity::now - it[0]->end_time;
+		int elapsed_time = Universe::now - it[0]->end_time;
 
 		if (elapsed_time > it[0]->duration)
 		{
@@ -58,7 +58,7 @@ void Tweener::update()
 		else
 		{
 			float percent_complete =
-				Velocity::now < it[0]->end_time
+				Universe::now < it[0]->end_time
 				?
 				elapsed_time / it[0]->duration
 				:

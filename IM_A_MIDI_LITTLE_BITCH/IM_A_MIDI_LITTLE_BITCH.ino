@@ -14,12 +14,12 @@ void setup() {
 		gcontrollers.push_back(new Animation_Controller(gchannels.back()));
 	}
 
-	Velocity::loop();
+	Universe::loop();
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	Velocity::loop();
+	Universe::loop();
 
 	for (auto& channel : gchannels)
 	{
