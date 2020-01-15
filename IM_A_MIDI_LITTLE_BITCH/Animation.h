@@ -7,6 +7,9 @@ class Animation
 protected:
 	CRGBSet led_set;
 
+	int start;
+	int end;
+
 	std::vector<Animation*> animations;
 
 public:

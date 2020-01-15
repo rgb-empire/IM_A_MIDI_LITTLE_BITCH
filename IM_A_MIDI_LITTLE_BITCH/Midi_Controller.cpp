@@ -1,33 +1,62 @@
 #include "Midi_Controller.h"
 
+void Midi_Controller::init()
+{
+	//MIDI.begin(MIDI_CHANNEL_OMNI);
+
+	//MIDI.setHandleNoteOff(handleNoteOff);
+	//MIDI.setHandleNoteOn(handleNoteOn);
+	//MIDI.setHandleAfterTouchPoly(handleAfterTouchPoly);
+	//MIDI.setHandleControlChange(handleControlChange);
+	//MIDI.setHandleProgramChange(handleProgramChange);
+	//MIDI.setHandleAfterTouchChannel(handleAfterTouchChannel);
+	//MIDI.setHandlePitchBend(handlePitchBend);
+	//MIDI.setHandleSystemExclusive(handleSystemExclusive);
+	//MIDI.setHandleTimeCodeQuarterFrame(handleTimeCodeQuarterFrame);
+	//MIDI.setHandleSongPosition(handleSongPosition);
+	//MIDI.setHandleSongSelect(handleSongSelect);
+	//MIDI.setHandleTuneRequest(handleTuneRequest);
+	//MIDI.setHandleClock(handleClock);
+	//MIDI.setHandleStart(handleStart);
+	//MIDI.setHandleContinue(handleContinue);
+	//MIDI.setHandleStop(handleStop);
+	//MIDI.setHandleActiveSensing(handleActiveSensing);
+	//MIDI.setHandleSystemReset(handleSystemReset);
+}
+
 void Midi_Controller::handleNoteOff(byte channel, byte note, byte velocity)
 {
-	gchannels[channel]->noteOff(note, velocity);
+	gchannels[channel]->note_off(note, velocity);
 }
 
 void Midi_Controller::handleNoteOn(byte channel, byte note, byte velocity)
 {
-	gchannels[channel]->noteOn(note, velocity);
+	gchannels[channel]->note_on(note, velocity);
 }
 
 void Midi_Controller::handleAfterTouchPoly(byte channel, byte note, byte pressure)
 {
+	gchannels[channel]->after_touch_poly(note, pressure);
 }
 
 void Midi_Controller::handleControlChange(byte channel, byte number, byte value)
 {
+	gchannels[channel]->control_change(number, value);
 }
 
 void Midi_Controller::handleProgramChange(byte channel, byte number)
 {
+	gchannels[channel]->program_change(number);
 }
 
 void Midi_Controller::handleAfterTouchChannel(byte channel, byte pressure)
 {
+	gchannels[channel]->after_touch_channel(pressure);
 }
 
 void Midi_Controller::handlePitchBend(byte channel, int bend)
 {
+	gchannels[channel]->pitch_bend(bend);
 }
 
 void Midi_Controller::handleSystemExclusive(byte* array, unsigned size)

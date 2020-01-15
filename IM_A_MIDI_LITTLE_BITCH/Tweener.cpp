@@ -11,7 +11,7 @@ Tweener::Easing_Function Tweener::easing_function_list[] =
 	bounce
 };
 
-void Tweener::tween(int* target, const int& new_val, const int duration, const Ease ease, const Ease_Type type)
+void Tweener::tween(int* target, const int& new_val, const int duration, const Ease ease, const Ease_Type type, void* callback)
 {
 	Tween* new_tween = new Tween(
 	{
@@ -24,7 +24,8 @@ void Tweener::tween(int* target, const int& new_val, const int duration, const E
 		Universe::now + duration,
 		ease,
 		type,
-		easing_function_list[ease]
+		easing_function_list[ease],
+		callback
 	});
 
 	bool exists = false;
@@ -48,26 +49,26 @@ void Tweener::update()
 {
 	for (std::vector<Tween*>::iterator it = tweens.begin(); it != tweens.end();)
 	{
-		int elapsed_time = Universe::now - it[0]->end_time;
+		int elapsed_time = Universe::now - (*it)->start_time;
 
-		if (elapsed_time > it[0]->duration)
+		if (elapsed_time > (*it)->duration)
 		{
-			*it[0]->target = it[0]->new_val;
+			*(*it)->target = (*it)->new_val;
 			it = tweens.erase(it);
 		}
 		else
 		{
 			float percent_complete =
-				Universe::now < it[0]->end_time
+				Universe::now < (*it)->end_time
 				?
-				elapsed_time / it[0]->duration
+				(float)elapsed_time / (float)(*it)->duration
 				:
 				1
 				;
 
-			Ease_Type temp_type = it[0]->type != INOUT ? it[0]->type : percent_complete < 0.5 ? IN : OUT;
+			Ease_Type temp_type = (*it)->type != INOUT ? (*it)->type : percent_complete < 0.5 ? IN : OUT;
 
-			*it[0]->target = it[0]->ease_func(percent_complete, elapsed_time, it[0]->old_val, it[0]->new_val, it[0]->duration, temp_type);
+			*(*it)->target = (*it)->ease_func(percent_complete, (*it)->old_val, (*it)->new_val, (*it)->delta_val, 1, IN);
 
 			++it;
 		}

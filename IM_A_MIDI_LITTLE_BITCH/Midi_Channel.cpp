@@ -3,9 +3,9 @@
 extern CRGBArray<NUM_LEDS> gleds;
 
 Midi_Channel::Midi_Channel()
-	:animation(new Animation(my_leds))
 {
 	shadows.push_back({ 0, NUM_LEDS - 1, NUM_LEDS });
+	animations.push_back(new Animation(my_leds));
 }
 
 Midi_Channel::~Midi_Channel()
@@ -45,28 +45,56 @@ void Midi_Channel::render(const fract16 alpha)
 
 void Midi_Channel::set_program(const byte new_program)
 {
-	old_program = program;
-	program = new_program;
+	vars.old_program = vars.program;
+	vars.program = new_program;
 
-	fade_fract = 0;
+	vars.fade_fract = 0;
 
-	Tweener::tween(&fade_fract, UINT16_MAX);
+	Tweener::tween(&vars.fade_fract, UINT16_MAX);
 }
 
-void Midi_Channel::noteOff(byte note, byte velocity)
+void Midi_Channel::note_off(byte note, byte velocity)
 {
-	note_off_number = note;
-	note_off_velocity = velocity;
-	last_event = OFF;
+	vars.note_off.note = note;
+	vars.note_off.velocity = velocity;
+	vars.last_event = OFF;
 
-	animation->ani_callback(OFF, note, velocity);
+	for (auto& animation : animations)
+	{
+		animation->ani_callback(OFF, note, velocity);
+	}
 }
 
-void Midi_Channel::noteOn(byte note, byte velocity)
+void Midi_Channel::note_on(byte note, byte velocity)
 {
-	note_on_number = note;
-	note_on_velocity = velocity;
-	last_event = ON;
+	vars.note_on.note = note;
+	vars.note_on.velocity = velocity;
+	vars.last_event = ON;
 	
-	animation->ani_callback(ON, note, velocity);
+	for (auto& animation : animations)
+	{
+		animation->ani_callback(ON, note, velocity);
+	}
+}
+
+void Midi_Channel::after_touch_poly(byte note, byte pressure)
+{
+	vars.after_touch_poly.note = note;
+	vars.after_touch_poly.pressure = pressure;
+}
+
+void Midi_Channel::control_change(byte number, byte value)
+{
+}
+
+void Midi_Channel::program_change(byte number)
+{
+}
+
+void Midi_Channel::after_touch_channel(byte pressure)
+{
+}
+
+void Midi_Channel::pitch_bend(int bend)
+{
 }

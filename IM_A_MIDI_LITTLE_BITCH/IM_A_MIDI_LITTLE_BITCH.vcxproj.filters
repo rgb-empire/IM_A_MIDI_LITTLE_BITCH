@@ -28,9 +28,6 @@
     <ClInclude Include="Animation_Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Easing_Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,6 +44,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Solid_Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

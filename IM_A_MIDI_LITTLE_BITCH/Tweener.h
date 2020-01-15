@@ -6,7 +6,7 @@ class Tweener
 {
 public:
 	
-	static void tween(int* target, const int& new_val, const int duration = 2000, const Ease ease = LINEAR,  const Ease_Type type = INOUT);
+	static void tween(int* target, const int& new_val, const int duration = 2000, const Ease ease = LINEAR, const Ease_Type type = INOUT, void* callback = NULL);
 
 	static void update();
 
@@ -25,6 +25,8 @@ protected:
 		Ease ease;
 		Ease_Type type;
 		Easing_Function ease_func;
+
+		void* callback;
 	};
 
 	static std::vector<Tween*> tweens;
