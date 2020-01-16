@@ -5,21 +5,61 @@
 */
 
 // the setup function runs once when you press reset or power the board
+#include <SoftwareSerial.h>
 #include "Global_Definitions.h"
 
+#if defined(USBCON)
+#include <midi_UsbTransport.h>
+
+static const unsigned sUsbTransportBufferSize = 16;
+typedef midi::UsbTransport<sUsbTransportBufferSize> UsbTransport;
+
+UsbTransport sUsbTransport;
+
+MIDI_CREATE_INSTANCE(UsbTransport, sUsbTransport, MIDI);
+
+#else // No USB available, fallback to Serial
 MIDI_CREATE_DEFAULT_INSTANCE();
+#endif
+
+SoftwareSerial mySerial(33, 5);
 
 void setup()
 {
 	delay(500);
 
-	//Serial.begin(115200);
+	Serial.begin(115200);
+	while (!Serial);
 
 	// Delay to allow uploader time to fix unstable software.
 	// Reduce or remove this for production.
 	delay(500);
 
-	Midi_Controller::init(MIDI);
+	mySerial.begin(38400);
+	mySerial.println("Hello, world?");
+
+	MIDI.begin(MIDI_CHANNEL_OMNI);
+
+	MIDI.setHandleNoteOff(Midi_Controller::handleNoteOff);
+	MIDI.setHandleNoteOn(Midi_Controller::handleNoteOn);
+	MIDI.setHandleAfterTouchPoly(Midi_Controller::handleAfterTouchPoly);
+	MIDI.setHandleControlChange(Midi_Controller::handleControlChange);
+	MIDI.setHandleProgramChange(Midi_Controller::handleProgramChange);
+	MIDI.setHandleAfterTouchChannel(Midi_Controller::handleAfterTouchChannel);
+	MIDI.setHandlePitchBend(Midi_Controller::handlePitchBend);
+	MIDI.setHandleSystemExclusive(Midi_Controller::handleSystemExclusive);
+	MIDI.setHandleTimeCodeQuarterFrame(Midi_Controller::handleTimeCodeQuarterFrame);
+	MIDI.setHandleSongPosition(Midi_Controller::handleSongPosition);
+	MIDI.setHandleSongSelect(Midi_Controller::handleSongSelect);
+	MIDI.setHandleTuneRequest(Midi_Controller::handleTuneRequest);
+	MIDI.setHandleClock(Midi_Controller::handleClock);
+	MIDI.setHandleStart(Midi_Controller::handleStart);
+	MIDI.setHandleContinue(Midi_Controller::handleContinue);
+	MIDI.setHandleStop(Midi_Controller::handleStop);
+	MIDI.setHandleActiveSensing(Midi_Controller::handleActiveSensing);
+	MIDI.setHandleSystemReset(Midi_Controller::handleSystemReset);
+
+	//Midi_Controller::init(MIDI);
 
 	for (int i = 0; i < NUM_MIDI_CHANNELS / 2; i++)
 	{
@@ -68,20 +108,20 @@ void loop()
 
 	MIDI.read();
 
-	//EVERY_N_MILLISECONDS(Universe::beat_duration(8))
-	//{
-	//	int new_hue = random8(128);
+	EVERY_N_MILLISECONDS(Universe::beat_duration(8))
+	{
+		int new_hue = random8(128);
 
 	//	//printf("new_hue : %i\n", new_hue);
 	//	//printf("FPS : %i\n", FastLED.getFPS());
 
-	//	Tweener::tween(&hue, new_hue, Universe::beat_duration(4));
-	//}
+		Tweener::tween(&hue, new_hue, Universe::beat_duration(4));
+	}
 
-	//EVERY_N_MILLISECONDS(400)
-	//{
-	//	printf("hue : %i\n", hue);
-	//}
+	EVERY_N_MILLISECONDS(400)
+	{
+		printf("hue : %i\n", hue);
+	}
 
 	if (Universe::beat)
 	{

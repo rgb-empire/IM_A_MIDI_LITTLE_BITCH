@@ -46,10 +46,10 @@
     <ClInclude Include="Solid_Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
+    <ClInclude Include="Pixel_Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pixel_Map.h">
+    <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

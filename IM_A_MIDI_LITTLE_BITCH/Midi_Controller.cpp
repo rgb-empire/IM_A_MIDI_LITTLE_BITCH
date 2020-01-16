@@ -1,28 +1,28 @@
 #include "Midi_Controller.h"
 
-void Midi_Controller::init(midi::MidiInterface<HardwareSerial> &MIDI)
-{
-	MIDI.begin(MIDI_CHANNEL_OMNI);
-
-	MIDI.setHandleNoteOff(handleNoteOff);
-	MIDI.setHandleNoteOn(handleNoteOn);
-	MIDI.setHandleAfterTouchPoly(handleAfterTouchPoly);
-	MIDI.setHandleControlChange(handleControlChange);
-	MIDI.setHandleProgramChange(handleProgramChange);
-	MIDI.setHandleAfterTouchChannel(handleAfterTouchChannel);
-	MIDI.setHandlePitchBend(handlePitchBend);
-	MIDI.setHandleSystemExclusive(handleSystemExclusive);
-	MIDI.setHandleTimeCodeQuarterFrame(handleTimeCodeQuarterFrame);
-	MIDI.setHandleSongPosition(handleSongPosition);
-	MIDI.setHandleSongSelect(handleSongSelect);
-	MIDI.setHandleTuneRequest(handleTuneRequest);
-	MIDI.setHandleClock(handleClock);
-	MIDI.setHandleStart(handleStart);
-	MIDI.setHandleContinue(handleContinue);
-	MIDI.setHandleStop(handleStop);
-	MIDI.setHandleActiveSensing(handleActiveSensing);
-	MIDI.setHandleSystemReset(handleSystemReset);
-}
+//void Midi_Controller::init(midi::MidiInterface<HardwareSerial> &MIDI)
+//{
+//	MIDI.begin(MIDI_CHANNEL_OMNI);
+//
+//	MIDI.setHandleNoteOff(handleNoteOff);
+//	MIDI.setHandleNoteOn(handleNoteOn);
+//	MIDI.setHandleAfterTouchPoly(handleAfterTouchPoly);
+//	MIDI.setHandleControlChange(handleControlChange);
+//	MIDI.setHandleProgramChange(handleProgramChange);
+//	MIDI.setHandleAfterTouchChannel(handleAfterTouchChannel);
+//	MIDI.setHandlePitchBend(handlePitchBend);
+//	MIDI.setHandleSystemExclusive(handleSystemExclusive);
+//	MIDI.setHandleTimeCodeQuarterFrame(handleTimeCodeQuarterFrame);
+//	MIDI.setHandleSongPosition(handleSongPosition);
+//	MIDI.setHandleSongSelect(handleSongSelect);
+//	MIDI.setHandleTuneRequest(handleTuneRequest);
+//	MIDI.setHandleClock(handleClock);
+//	MIDI.setHandleStart(handleStart);
+//	MIDI.setHandleContinue(handleContinue);
+//	MIDI.setHandleStop(handleStop);
+//	MIDI.setHandleActiveSensing(handleActiveSensing);
+//	MIDI.setHandleSystemReset(handleSystemReset);
+//}
 
 void Midi_Controller::handleNoteOff(byte channel, byte note, byte velocity)
 {
