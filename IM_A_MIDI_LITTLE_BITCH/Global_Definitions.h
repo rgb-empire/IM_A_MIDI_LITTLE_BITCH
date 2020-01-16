@@ -6,7 +6,10 @@
 #include <string>
 #include <FastLED.h>
 #include <MIDI.h>
-#include <SoftwareSerial.h>
+#include <HardwareSerial.h>
+//#include <SoftwareSerial.h>
+
+extern HardwareSerial mySerial;
 
 #define NUM_LEDS 2304
 #define NUM_MIDI_CHANNELS 16

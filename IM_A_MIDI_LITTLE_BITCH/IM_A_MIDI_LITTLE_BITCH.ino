@@ -5,40 +5,41 @@
 */
 
 // the setup function runs once when you press reset or power the board
-#include <SoftwareSerial.h>
+#include "arduino.h"
+#include <bitset>
+#include <vector>
+#include <string>
+#include <FastLED.h>
+#include <MIDI.h>
+#include <HardwareSerial.h>
+//#include <SoftwareSerial.h>
+
 #include "Global_Definitions.h"
 
-#if defined(USBCON)
-#include <midi_UsbTransport.h>
+HardwareSerial mySerial(1);
 
-static const unsigned sUsbTransportBufferSize = 16;
-typedef midi::UsbTransport<sUsbTransportBufferSize> UsbTransport;
-
-UsbTransport sUsbTransport;
-
-MIDI_CREATE_INSTANCE(UsbTransport, sUsbTransport, MIDI);
-
-#else // No USB available, fallback to Serial
 MIDI_CREATE_DEFAULT_INSTANCE();
-#endif
 
-SoftwareSerial mySerial(33, 5);
+//SoftwareSerial mySerial(33, 5);
 
 void setup()
 {
 	delay(500);
 
-	Serial.begin(115200);
-	while (!Serial);
+	mySerial.begin(9600, SERIAL_8N1, 33, 5);
+	//Serial.begin(115200);
+	//while (!Serial);
 
 	// Delay to allow uploader time to fix unstable software.
 	// Reduce or remove this for production.
 	delay(500);
 
-	mySerial.begin(38400);
-	mySerial.println("Hello, world?");
+	
 
 	MIDI.begin(MIDI_CHANNEL_OMNI);
+
+
+	
 
 	MIDI.setHandleNoteOff(Midi_Controller::handleNoteOff);
 	MIDI.setHandleNoteOn(Midi_Controller::handleNoteOn);
@@ -61,40 +62,54 @@ void setup()
 
 	//Midi_Controller::init(MIDI);
 
-	for (int i = 0; i < NUM_MIDI_CHANNELS / 2; i++)
+	for (int i = 0; i < 8; i++)
 	{
+		mySerial.println("boooooooooooooobiesssssssss #");
+		mySerial.println(i);
+		heap_caps_check_integrity_all(true);
 		gchannels.push_back(new Midi_Channel(Midi_Channel_Settings[i].len));
-
+		heap_caps_check_integrity_all(true);
 		gchannels.back()->map_leds(Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
+		heap_caps_check_integrity_all(true);
+
+		mySerial.println(Midi_Channel_Settings[i].start);
+		mySerial.println(Midi_Channel_Settings[i].len);
 
 		switch (i)
 		{
 		case 0:
-			FastLED.addLeds<NEOPIXEL, 21>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 21>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 1:
-			FastLED.addLeds<NEOPIXEL, 19>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 19>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 2:
-			FastLED.addLeds<NEOPIXEL, 18>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 18>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 3:
-			FastLED.addLeds<NEOPIXEL, 15>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 15>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 4:
-			FastLED.addLeds<NEOPIXEL, 2>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 2>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 5:
-			FastLED.addLeds<NEOPIXEL, 0>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 0>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 6:
-			FastLED.addLeds<NEOPIXEL, 4>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 4>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		case 7:
-			FastLED.addLeds<NEOPIXEL, 5>(gleds, 0, Midi_Channel_Settings[i].len);
+			FastLED.addLeds<NEOPIXEL, 5>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		}
+		heap_caps_check_integrity_all(true);
 	}
+
+	do
+	{
+		mySerial.println("boooooooooooooobiesssssssss");
+		delay(100);
+	} while (true);
 }
 
 int hue = 0;
@@ -102,6 +117,11 @@ int hue = 0;
 // the loop function runs over and over again until power down or reset
 void loop()
 {
+	
+
+	mySerial.println("HMMMMMMMMMMMMMMMMMMMM");
+
+
 	gleds.fill_solid(CRGB::Black);
 
 	Universe::loop();
@@ -120,7 +140,9 @@ void loop()
 
 	EVERY_N_MILLISECONDS(400)
 	{
-		printf("hue : %i\n", hue);
+
+		//mySerial.printf("hue : %i\n", hue);
+
 	}
 
 	if (Universe::beat)
@@ -135,6 +157,7 @@ void loop()
 	gchannels[0]->render();
 
 	FastLED.show();
-
+	
 	FastLED.countFPS();
+
 }
