@@ -49,6 +49,9 @@
     <ClInclude Include="__vm\.IM_A_MIDI_LITTLE_BITCH.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pixel_Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Midi_Channel.cpp">
@@ -76,6 +79,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Solid_Color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pixel_Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,12 +6,11 @@ class Tweener
 {
 public:
 	
-	static void tween(int* target, const int& new_val, const int duration = 2000, const Ease ease = LINEAR, const Ease_Type type = INOUT, void* callback = NULL);
+	static void tween(int* target, const int& new_val, const int duration = 2000, const Ease ease = LINEAR, const Ease_Type type = INOUT, Callback callback = NULL);
 
 	static void update();
 
 protected:
-	typedef int (*Easing_Function)(float, int, int, int, int, Ease_Type);
 
 	struct Tween {
 		int* target;
@@ -26,10 +25,8 @@ protected:
 		Ease_Type type;
 		Easing_Function ease_func;
 
-		void* callback;
+		Callback cb;
 	};
 
 	static std::vector<Tween*> tweens;
-
-	static Easing_Function easing_function_list[];
 };

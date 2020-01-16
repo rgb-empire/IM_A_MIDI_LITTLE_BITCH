@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animation_Controller.h" />
+    <ClInclude Include="Pixel_Map.h" />
     <ClInclude Include="Solid_Color.h" />
     <ClInclude Include="Universe.h" />
     <ClInclude Include="Easing_Functions.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animation_Controller.cpp" />
     <ClCompile Include="Global_Definitions.cpp" />
+    <ClCompile Include="Pixel_Map.cpp" />
     <ClCompile Include="Solid_Color.cpp" />
     <ClCompile Include="Universe.cpp" />
     <ClCompile Include="Easing_Functions.cpp" />

@@ -9,28 +9,23 @@ protected:
 	friend class Midi_Controller;
 	friend class Animation_Controller;
 
-	struct shadow {
-		int start;
-		int end;
-		int len;
-	};
-
-	CRGBArray<NUM_LEDS_PER_CHANNEL> my_leds;
+	int num_leds;
+	CRGB* ch_leds;
+	CRGBSet ch_led_set;
 	
-	std::vector<shadow> shadows;
+	std::vector<Pixel_Map*> ch_pixel_maps;
 	std::vector<Animation*> animations;
 
 public:
 	Channel_Vars vars;
 
-	Midi_Channel();
-	Midi_Channel(Pixel_Source source, Pixel_Drain drain);
+	Midi_Channel(int num_leds);
 	~Midi_Channel();
 
 	void loop();
 
-	void map_leds(const int start, const int end);
-	void render(const fract16 alpha = 0);
+	void map_leds(const int start, const int len);
+	void render(const fract8 alpha = 0);
 
 	void set_program(const byte new_program);
 

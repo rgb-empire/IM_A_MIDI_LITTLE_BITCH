@@ -3,15 +3,7 @@
 
 std::vector<Tweener::Tween*> Tweener::tweens;
 
-Tweener::Easing_Function Tweener::easing_function_list[] =
-{
-	polynomial,
-	sine,
-	elastic,
-	bounce
-};
-
-void Tweener::tween(int* target, const int& new_val, const int duration, const Ease ease, const Ease_Type type, void* callback)
+void Tweener::tween(int* target, const int& new_val, const int duration, const Ease ease, const Ease_Type type, Callback callback)
 {
 	Tween* new_tween = new Tween(
 	{
@@ -54,7 +46,15 @@ void Tweener::update()
 		if (elapsed_time > (*it)->duration)
 		{
 			*(*it)->target = (*it)->new_val;
+
+			Callback cb = (*it)->cb;
+
 			it = tweens.erase(it);
+
+			if (cb != NULL)
+			{
+				cb();
+			}
 		}
 		else
 		{
@@ -65,8 +65,6 @@ void Tweener::update()
 				:
 				1
 				;
-
-			Ease_Type temp_type = (*it)->type != INOUT ? (*it)->type : percent_complete < 0.5 ? IN : OUT;
 
 			*(*it)->target = (*it)->ease_func(percent_complete, (*it)->old_val, (*it)->new_val, (*it)->delta_val, 1, IN);
 

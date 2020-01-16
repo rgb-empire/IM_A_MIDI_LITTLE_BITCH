@@ -21,6 +21,8 @@ class Midi_Controller;
 class Midi_Channel;
 class Animation_Controller;
 class Animation;
+class Solid_Color;
+class Pixel_Map;
 
 //extern midi::MidiInterface<HardwareSerial> MIDI;
 
@@ -29,6 +31,12 @@ extern std::vector<Animation_Controller*> gcontrollers;
 
 enum Ease { LINEAR, SINE, QUAD, CUBIC, QUART, QUINT };
 enum Ease_Type { IN, OUT, INOUT };
+
+enum Direction
+{
+	FORWARD,
+	BACKWARD
+};
 
 enum Animation_Name {
 	NONE,
@@ -47,7 +55,9 @@ enum Event {
 	PITCH
 };
 
+typedef int (*Easing_Function)(float, int, int, int, int, Ease_Type);
 typedef void(*Animation_Func)(Event,byte,byte);
+typedef void (*Callback)();
 
 struct Note
 {
@@ -77,38 +87,27 @@ struct Channel_Vars
 	byte after_touch_pressure;
 
 	int pitch_bend;
-};
 
-struct Pixel_Source
-{
-	CRGBSet leds;
-	int start_pos;
-	int end_pos;
-	int len;
-};
-
-struct Pixel_Drain
-{
-	CRGBSet leds;
-	int start_pos;
-	int end_pos;
-	int len;
-};
-
-struct Pixel_Map
-{
-	Pixel_Source source;
-	Pixel_Drain drain;
-};
-
-// Control Changes
+	// Control Changes
 // TODO: Put all control change instructions here maybe
+};
+
+struct Range
+{
+	int start;
+	int end;
+	int len;
+};
+
+extern Range Midi_Channel_Settings[];
 
 #include "Universe.h"
 
 #include "Tweener.h"
+#include "Pixel_Map.h"
 #include "Midi_Controller.h"
 
 #include "Midi_Channel.h"
 #include "Animation_Controller.h"
 #include "Animation.h"
+#include "Solid_Color.h"

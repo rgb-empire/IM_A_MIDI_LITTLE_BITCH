@@ -1,6 +1,14 @@
 #include "Easing_Functions.h"
 #include "math.h"
 
+Easing_Function easing_function_list[] =
+{
+	polynomial,
+	sine,
+	elastic,
+	bounce
+};
+
 //y = x^n
 int polynomial(float percent_complete, int old_val, int new_val, int delta_val, int modifier = 1, Ease_Type type = IN)
 {

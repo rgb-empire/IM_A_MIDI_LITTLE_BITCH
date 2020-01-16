@@ -1,0 +1,15 @@
+#pragma once
+
+#include <FastLED.h>
+
+class Pixel_Map
+{
+public:
+	CRGBSet source;
+	CRGBSet drain;
+
+	Pixel_Map(CRGBSet source, CRGBSet drain);
+
+	void add_source_to_drain(uint8_t alpha);
+};
+

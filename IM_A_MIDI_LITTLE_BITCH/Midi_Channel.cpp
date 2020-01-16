@@ -1,45 +1,44 @@
 #include "Midi_Channel.h"
 
-extern CRGBArray<NUM_LEDS> gleds;
-
-Midi_Channel::Midi_Channel()
+Midi_Channel::Midi_Channel(int num_leds)
+	:num_leds(num_leds),
+	ch_leds(new CRGB[num_leds]),
+	ch_led_set(CRGBSet(ch_leds, num_leds))
 {
-	shadows.push_back({ 0, NUM_LEDS - 1, NUM_LEDS });
-	animations.push_back(new Animation(my_leds));
+	animations.push_back(new Animation(ch_led_set));
 }
 
 Midi_Channel::~Midi_Channel()
 {
+	delete ch_leds;
 }
 
 void Midi_Channel::loop()
 {
-	// Does anything even happen here?
+	render();
 }
 
-void Midi_Channel::map_leds(const int start, const int end)
+void Midi_Channel::map_leds(const int start, int len)
 {
-	shadows.push_back({start, end, abs(end - start)});
-}
-
-void Midi_Channel::render(const fract16 alpha)
-{
-	for (auto& shadow : shadows)
+	if (abs(len) > num_leds)
 	{
-		if (shadow.start < shadow.end) //forward
-		{
-			for (int i = 0; i < shadow.len; i++)
-			{
-				gleds[shadow.start + i] = my_leds[shadow.start + i];
-			}
-		}
-		else //backward
-		{
-			for (int i = 0; i < shadow.len; i++)
-			{
-				gleds[shadow.end - i] = my_leds[shadow.start + i];
-			}
-		}
+		len = num_leds;
+	}
+
+	if (start + len > num_leds)
+	{
+		len = num_leds - start;
+	}
+
+	ch_pixel_maps.push_back(new Pixel_Map(ch_led_set(0, len - 1), gleds(start, start + len - 1)));
+}
+
+void Midi_Channel::render(const fract8 alpha)
+{
+
+	for (auto& pixel_map : ch_pixel_maps)
+	{
+		pixel_map->add_source_to_drain(alpha);
 	}
 }
 

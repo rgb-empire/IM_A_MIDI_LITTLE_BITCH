@@ -17,3 +17,9 @@ void Animation::ani_callback(Event event, byte note, byte velocity)
 		led_set.fill_solid(CRGB::Black);
 	}
 }
+
+Animation* Animation::create(CRGBSet new_set)
+{
+	return nullptr;
+
+}
