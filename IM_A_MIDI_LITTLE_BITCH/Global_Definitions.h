@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <FastLED.h>
-//#include <MIDI.h>
+#include <MIDI.h>
 
 #define NUM_LEDS 2304
 #define NUM_MIDI_CHANNELS 16
@@ -23,8 +23,6 @@ class Animation_Controller;
 class Animation;
 class Solid_Color;
 class Pixel_Map;
-
-//extern midi::MidiInterface<HardwareSerial> MIDI;
 
 extern std::vector<Midi_Channel*> gchannels;
 extern std::vector<Animation_Controller*> gcontrollers;

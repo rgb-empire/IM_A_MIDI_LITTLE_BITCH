@@ -5,6 +5,8 @@ std::vector<Animation_Controller*> gcontrollers;
 
 CRGBArray<NUM_LEDS> gleds;
 
+//midi::MidiInterface<HardwareSerial> MIDI;
+
 Range Midi_Channel_Settings[] =
 {
 	{0 * NUM_LEDS_PER_CHANNEL,	1 * NUM_LEDS_PER_CHANNEL - 1, NUM_LEDS_PER_CHANNEL},

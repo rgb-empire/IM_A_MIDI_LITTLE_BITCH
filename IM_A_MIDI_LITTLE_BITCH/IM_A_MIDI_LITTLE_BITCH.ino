@@ -7,19 +7,19 @@
 // the setup function runs once when you press reset or power the board
 #include "Global_Definitions.h"
 
-//MIDI_CREATE_DEFAULT_INSTANCE();
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 void setup()
 {
 	delay(500);
 
-	Serial.begin(115200);
+	//Serial.begin(115200);
 
 	// Delay to allow uploader time to fix unstable software.
 	// Reduce or remove this for production.
 	delay(500);
 
-	Midi_Controller::init();
+	Midi_Controller::init(MIDI);
 
 	for (int i = 0; i < NUM_MIDI_CHANNELS / 2; i++)
 	{
@@ -66,17 +66,17 @@ void loop()
 
 	Universe::loop();
 
-	//MIDI.read();
+	MIDI.read();
 
-	EVERY_N_MILLISECONDS(Universe::beat_duration(8))
-	{
-		int new_hue = random8(128);
+	//EVERY_N_MILLISECONDS(Universe::beat_duration(8))
+	//{
+	//	int new_hue = random8(128);
 
-		printf("new_hue : %i\n", new_hue);
-		printf("FPS : %i\n", FastLED.getFPS());
+	//	//printf("new_hue : %i\n", new_hue);
+	//	//printf("FPS : %i\n", FastLED.getFPS());
 
-		Tweener::tween(&hue, new_hue, Universe::beat_duration(4));
-	}
+	//	Tweener::tween(&hue, new_hue, Universe::beat_duration(4));
+	//}
 
 	//EVERY_N_MILLISECONDS(400)
 	//{
@@ -85,12 +85,12 @@ void loop()
 
 	if (Universe::beat)
 	{
-		Serial.println("BEAT!");
+		//Serial.println("BEAT!");
 	}
 
 	Tweener::update();
 
-	Midi_Controller::handleNoteOn(0, hue, 255);
+	//Midi_Controller::handleNoteOn(0, hue, 255);
 
 	gchannels[0]->render();
 

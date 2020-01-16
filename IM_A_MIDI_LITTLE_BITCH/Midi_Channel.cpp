@@ -25,9 +25,9 @@ void Midi_Channel::map_leds(const int start, int len)
 		len = num_leds;
 	}
 
-	if (start + len > num_leds)
+	if (start + len > NUM_LEDS)
 	{
-		len = num_leds - start;
+		len = NUM_LEDS - start;
 	}
 
 	ch_pixel_maps.push_back(new Pixel_Map(ch_led_set(0, len - 1), gleds(start, start + len - 1)));
