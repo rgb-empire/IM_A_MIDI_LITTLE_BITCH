@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FastLED.h>
+#include "Global_Definitions.h"
 
 class Pixel_Map
 {

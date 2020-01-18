@@ -16,17 +16,20 @@
 
 #include "Global_Definitions.h"
 
-HardwareSerial mySerial(1);
+//HardwareSerial Serial(0);
+//HardwareSerial MIDI_SERIAL(1);
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+#include "Bug.h"
 
-//SoftwareSerial mySerial(33, 5);
+//MIDI_CREATE_INSTANCE(HardwareSerial, MIDI_SERIAL, MIDI);
+
+//SoftwareSerial Serial(33, 5);
 
 void setup()
 {
 	delay(500);
 
-	mySerial.begin(9600, SERIAL_8N1, 33, 5);
+	Serial.begin(115200);// , SERIAL_8N1, 3, 1);
 	//Serial.begin(115200);
 	//while (!Serial);
 
@@ -34,46 +37,43 @@ void setup()
 	// Reduce or remove this for production.
 	delay(500);
 
-	
+	START2;
 
-	MIDI.begin(MIDI_CHANNEL_OMNI);
-
-
-	
-
-	MIDI.setHandleNoteOff(Midi_Controller::handleNoteOff);
-	MIDI.setHandleNoteOn(Midi_Controller::handleNoteOn);
-	MIDI.setHandleAfterTouchPoly(Midi_Controller::handleAfterTouchPoly);
-	MIDI.setHandleControlChange(Midi_Controller::handleControlChange);
-	MIDI.setHandleProgramChange(Midi_Controller::handleProgramChange);
-	MIDI.setHandleAfterTouchChannel(Midi_Controller::handleAfterTouchChannel);
-	MIDI.setHandlePitchBend(Midi_Controller::handlePitchBend);
-	MIDI.setHandleSystemExclusive(Midi_Controller::handleSystemExclusive);
-	MIDI.setHandleTimeCodeQuarterFrame(Midi_Controller::handleTimeCodeQuarterFrame);
-	MIDI.setHandleSongPosition(Midi_Controller::handleSongPosition);
-	MIDI.setHandleSongSelect(Midi_Controller::handleSongSelect);
-	MIDI.setHandleTuneRequest(Midi_Controller::handleTuneRequest);
-	MIDI.setHandleClock(Midi_Controller::handleClock);
-	MIDI.setHandleStart(Midi_Controller::handleStart);
-	MIDI.setHandleContinue(Midi_Controller::handleContinue);
-	MIDI.setHandleStop(Midi_Controller::handleStop);
-	MIDI.setHandleActiveSensing(Midi_Controller::handleActiveSensing);
-	MIDI.setHandleSystemReset(Midi_Controller::handleSystemReset);
+	//MIDI.setHandleNoteOff(Midi_Controller::handleNoteOff);
+	//MIDI.setHandleNoteOn(Midi_Controller::handleNoteOn);
+	//MIDI.setHandleAfterTouchPoly(Midi_Controller::handleAfterTouchPoly);
+	//MIDI.setHandleControlChange(Midi_Controller::handleControlChange);
+	//MIDI.setHandleProgramChange(Midi_Controller::handleProgramChange);
+	//MIDI.setHandleAfterTouchChannel(Midi_Controller::handleAfterTouchChannel);
+	//MIDI.setHandlePitchBend(Midi_Controller::handlePitchBend);
+	//MIDI.setHandleSystemExclusive(Midi_Controller::handleSystemExclusive);
+	//MIDI.setHandleTimeCodeQuarterFrame(Midi_Controller::handleTimeCodeQuarterFrame);
+	//MIDI.setHandleSongPosition(Midi_Controller::handleSongPosition);
+	//MIDI.setHandleSongSelect(Midi_Controller::handleSongSelect);
+	//MIDI.setHandleTuneRequest(Midi_Controller::handleTuneRequest);
+	//MIDI.setHandleClock(Midi_Controller::handleClock);
+	//MIDI.setHandleStart(Midi_Controller::handleStart);
+	//MIDI.setHandleContinue(Midi_Controller::handleContinue);
+	//MIDI.setHandleStop(Midi_Controller::handleStop);
+	//MIDI.setHandleActiveSensing(Midi_Controller::handleActiveSensing);
+	//MIDI.setHandleSystemReset(Midi_Controller::handleSystemReset);
 
 	//Midi_Controller::init(MIDI);
 
 	for (int i = 0; i < 8; i++)
 	{
-		mySerial.println("boooooooooooooobiesssssssss #");
-		mySerial.println(i);
-		heap_caps_check_integrity_all(true);
-		gchannels.push_back(new Midi_Channel(Midi_Channel_Settings[i].len));
-		heap_caps_check_integrity_all(true);
-		gchannels.back()->map_leds(Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
-		heap_caps_check_integrity_all(true);
+		MEM2;
 
-		mySerial.println(Midi_Channel_Settings[i].start);
-		mySerial.println(Midi_Channel_Settings[i].len);
+		P2(i);
+
+		gchannels.push_back(new Midi_Channel(Midi_Channel_Settings[i].len));
+
+		THING2;
+
+		gchannels.back()->map_leds(Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
+
+		P2(Midi_Channel_Settings[i].start);
+		P2(Midi_Channel_Settings[i].len);
 
 		switch (i)
 		{
@@ -102,14 +102,17 @@ void setup()
 			FastLED.addLeds<NEOPIXEL, 5>(gleds, Midi_Channel_Settings[i].start, Midi_Channel_Settings[i].len);
 			break;
 		}
-		heap_caps_check_integrity_all(true);
 	}
+
+	//MIDI.begin(MIDI_CHANNEL_OMNI);
 
 	do
 	{
-		mySerial.println("boooooooooooooobiesssssssss");
+		Serial.println("boooooooooooooobiesssssssss");
 		delay(100);
 	} while (true);
+
+	END2;
 }
 
 int hue = 0;
@@ -117,16 +120,16 @@ int hue = 0;
 // the loop function runs over and over again until power down or reset
 void loop()
 {
-	
+	START2;
 
-	mySerial.println("HMMMMMMMMMMMMMMMMMMMM");
+	Serial.println("HMMMMMMMMMMMMMMMMMMMM");
 
 
 	gleds.fill_solid(CRGB::Black);
 
 	Universe::loop();
 
-	MIDI.read();
+	//MIDI.read();
 
 	EVERY_N_MILLISECONDS(Universe::beat_duration(8))
 	{
@@ -141,7 +144,7 @@ void loop()
 	EVERY_N_MILLISECONDS(400)
 	{
 
-		//mySerial.printf("hue : %i\n", hue);
+		//Serial.printf("hue : %i\n", hue);
 
 	}
 
@@ -160,4 +163,5 @@ void loop()
 	
 	FastLED.countFPS();
 
+	START2;
 }
