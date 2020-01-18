@@ -139,15 +139,15 @@ inline void Bug::display_memory(String new_string)
 	{
 		for (int i = 0; i < function_stack.size() - 1; i++)
 		{
-			Serial.print("      ");
+			mySerial.print("      ");
 		}
 	}
 
-	Serial.print("Memory remaining " + new_string + ": ");
+	mySerial.print("Memory remaining " + new_string + ": ");
 
-	Serial.print((ESP.getFreeHeap() / 1024));
+	mySerial.print((ESP.getFreeHeap() / 1024));
 
-	Serial.println(" KB");
+	mySerial.println(" KB");
 
 	heap_caps_check_integrity_all(true);
 }
@@ -171,7 +171,7 @@ inline void Bug::start(String new_string)
 
 	string_me += "Starting ";
 
-	Serial.println(string_me + new_string);
+	mySerial.println(string_me + new_string);
 
 	heap_caps_check_integrity_all(true);
 
@@ -200,11 +200,11 @@ inline int Bug::end(String new_string)
 		function_stack.pop_back();
 		thing_stack.pop_back();
 
-		Serial.println(string_me + n_and_t.function_name + " after " + (function_time)+" millis");
+		mySerial.println(string_me + n_and_t.function_name + " after " + (function_time)+" millis");
 	}
 	else
 	{
-		Serial.println("START/END MISMATCH IN " + new_string);
+		mySerial.println("START/END MISMATCH IN " + new_string);
 	}
 
 	return function_time;
@@ -228,32 +228,32 @@ inline void Bug::thing_counter(String new_string)
 		string_me += "      ";
 	}
 
-	Serial.println(string_me + "Thing #" + (String)thing_stack.back() + " in " + new_string);
+	mySerial.println(string_me + "Thing #" + (String)thing_stack.back() + " in " + new_string);
 }
 
 inline void Bug::print(String new_string, float value)
 {
-	Serial.println(new_string + ": " + String(value));
+	mySerial.println(new_string + ": " + String(value));
 }
 
 inline void Bug::print(String new_string, int value)
 {
-	Serial.println(new_string + ": " + String(value));
+	mySerial.println(new_string + ": " + String(value));
 }
 
 inline void Bug::check_memory(String msg = "") {
 
-	Serial.print(msg);
+	mySerial.print(msg);
 
-	Serial.print(" ");
+	mySerial.print(" ");
 
-	Serial.print((ESP.getFreeHeap() / 1024));
+	mySerial.print((ESP.getFreeHeap() / 1024));
 
-	Serial.print(" KB ");
+	mySerial.print(" KB ");
 
-	Serial.print(FastLED.getFPS());
+	mySerial.print(FastLED.getFPS());
 
-	Serial.println(" FPS ");
+	mySerial.println(" FPS ");
 
 
 	heap_caps_check_integrity_all(true);

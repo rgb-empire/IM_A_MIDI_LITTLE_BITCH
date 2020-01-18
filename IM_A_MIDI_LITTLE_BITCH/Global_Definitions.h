@@ -9,7 +9,8 @@
 #include <HardwareSerial.h>
 //#include <SoftwareSerial.h>
 
-//extern HardwareSerial Serial;
+extern HardwareSerial mySerial;
+//extern HardwareSerial MIDI_SERIAL;
 
 #define NUM_LEDS 2304
 #define NUM_MIDI_CHANNELS 16

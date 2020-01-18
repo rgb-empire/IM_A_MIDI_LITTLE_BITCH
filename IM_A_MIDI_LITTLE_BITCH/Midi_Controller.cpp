@@ -1,40 +1,42 @@
 #include "Midi_Controller.h"
 
-//void Midi_Controller::init(midi::MidiInterface<HardwareSerial> &MIDI)
-//{
-//	MIDI.begin(MIDI_CHANNEL_OMNI);
-//
-//	MIDI.setHandleNoteOff(handleNoteOff);
-//	MIDI.setHandleNoteOn(handleNoteOn);
-//	MIDI.setHandleAfterTouchPoly(handleAfterTouchPoly);
-//	MIDI.setHandleControlChange(handleControlChange);
-//	MIDI.setHandleProgramChange(handleProgramChange);
-//	MIDI.setHandleAfterTouchChannel(handleAfterTouchChannel);
-//	MIDI.setHandlePitchBend(handlePitchBend);
-//	MIDI.setHandleSystemExclusive(handleSystemExclusive);
-//	MIDI.setHandleTimeCodeQuarterFrame(handleTimeCodeQuarterFrame);
-//	MIDI.setHandleSongPosition(handleSongPosition);
-//	MIDI.setHandleSongSelect(handleSongSelect);
-//	MIDI.setHandleTuneRequest(handleTuneRequest);
-//	MIDI.setHandleClock(handleClock);
-//	MIDI.setHandleStart(handleStart);
-//	MIDI.setHandleContinue(handleContinue);
-//	MIDI.setHandleStop(handleStop);
-//	MIDI.setHandleActiveSensing(handleActiveSensing);
-//	MIDI.setHandleSystemReset(handleSystemReset);
-//}
+void Midi_Controller::init(midi::MidiInterface<HardwareSerial> &MIDI)
+{
+	MIDI.begin(MIDI_CHANNEL_OMNI);
+
+	MIDI.setHandleNoteOff(handleNoteOff);
+	MIDI.setHandleNoteOn(handleNoteOn);
+	MIDI.setHandleAfterTouchPoly(handleAfterTouchPoly);
+	MIDI.setHandleControlChange(handleControlChange);
+	MIDI.setHandleProgramChange(handleProgramChange);
+	MIDI.setHandleAfterTouchChannel(handleAfterTouchChannel);
+	MIDI.setHandlePitchBend(handlePitchBend);
+	MIDI.setHandleSystemExclusive(handleSystemExclusive);
+	MIDI.setHandleTimeCodeQuarterFrame(handleTimeCodeQuarterFrame);
+	MIDI.setHandleSongPosition(handleSongPosition);
+	MIDI.setHandleSongSelect(handleSongSelect);
+	MIDI.setHandleTuneRequest(handleTuneRequest);
+	MIDI.setHandleClock(handleClock);
+	MIDI.setHandleStart(handleStart);
+	MIDI.setHandleContinue(handleContinue);
+	MIDI.setHandleStop(handleStop);
+	MIDI.setHandleActiveSensing(handleActiveSensing);
+	MIDI.setHandleSystemReset(handleSystemReset);
+}
 
 void Midi_Controller::handleNoteOff(byte channel, byte note, byte velocity)
 {
 	START3;
-	gchannels[channel]->note_off(note, velocity);
+	mySerial.println("NoteOff");
+	//gchannels[channel]->note_off(note, velocity);
 	END3;
 }
 
 void Midi_Controller::handleNoteOn(byte channel, byte note, byte velocity)
 {
 	START3;
-	gchannels[channel]->note_on(note, velocity);
+	mySerial.println("NoteOn");
+	//gchannels[channel]->note_on(note, velocity);
 	END3;
 }
 
