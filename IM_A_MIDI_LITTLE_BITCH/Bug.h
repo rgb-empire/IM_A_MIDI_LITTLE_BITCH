@@ -23,6 +23,62 @@
 
 #include "Global_Definitions.h"
 
+//#define START(x, y, z) Bug::start(__PRETTY_FUNCTION__);P(x, y, z))
+//#define START1(x, y, z) BUG1(Bug::start(__PRETTY_FUNCTION__));P(x, y, z))
+//#define START2(x, y, z) BUG2(Bug::start(__PRETTY_FUNCTION__);P(x, y, z))
+//#define START3(x, y, z) BUG3(Bug::start(__PRETTY_FUNCTION__));P(x, y, z))
+//#define START4(x, y, z) BUG4(Bug::start(__PRETTY_FUNCTION__));P(x, y, z))
+//#define START5(x, y, z) BUG5(Bug::start(__PRETTY_FUNCTION__));P(x, y, z))
+//
+//#define END(x, y, z) Bug::end(__PRETTY_FUNCTION__);P(x, y, z))
+//#define END1(x, y, z) BUG1(Bug::end(__PRETTY_FUNCTION__));P(x, y, z))
+//#define END2(x, y, z) BUG2(Bug::end(__PRETTY_FUNCTION__));P(x, y, z))
+//#define END3(x, y, z) BUG3(Bug::end(__PRETTY_FUNCTION__));P(x, y, z))
+//#define END4(x, y, z) BUG4(Bug::end(__PRETTY_FUNCTION__));P(x, y, z))
+//#define END5(x, y, z) BUG5(Bug::end(__PRETTY_FUNCTION__));P(x, y, z))
+//
+//#define THING(x, y, z) Bug::thing_counter(__PRETTY_FUNCTION__);P(x, y, z))
+//#define THING1(x, y, z) BUG1(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y, z))
+//#define THING2(x, y, z) BUG2(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y, z))
+//#define THING3(x, y, z) BUG3(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y, z))
+//#define THING4(x, y, z) BUG4(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y, z))
+//#define THING5(x, y, z) BUG5(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y, z))
+//
+//#define MEM(x, y, z) Bug::display_memory(" after " + String(__PRETTY_FUNCTION__));P(x, y, z))
+//#define MEM1(x, y, z) BUG1(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y, z))
+//#define MEM2(x, y, z) BUG2(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y, z))
+//#define MEM3(x, y, z) BUG3(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y, z))
+//#define MEM4(x, y, z) BUG4(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y, z))
+//#define MEM5(x, y, z) BUG5(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y, z))
+//
+//#define START(x, y) Bug::start(__PRETTY_FUNCTION__);P(x, y))
+//#define START1(x, y) BUG1(Bug::start(__PRETTY_FUNCTION__));P(x, y))
+//#define START2(x, y) BUG2(Bug::start(__PRETTY_FUNCTION__);P(x, y))
+//#define START3(x, y) BUG3(Bug::start(__PRETTY_FUNCTION__));P(x, y))
+//#define START4(x, y) BUG4(Bug::start(__PRETTY_FUNCTION__));P(x, y))
+//#define START5(x, y) BUG5(Bug::start(__PRETTY_FUNCTION__));P(x, y))
+//
+//#define END(x, y) Bug::end(__PRETTY_FUNCTION__);P(x, y))
+//#define END1(x, y) BUG1(Bug::end(__PRETTY_FUNCTION__));P(x, y))
+//#define END2(x, y) BUG2(Bug::end(__PRETTY_FUNCTION__));P(x, y))
+//#define END3(x, y) BUG3(Bug::end(__PRETTY_FUNCTION__));P(x, y))
+//#define END4(x, y) BUG4(Bug::end(__PRETTY_FUNCTION__));P(x, y))
+//#define END5(x, y) BUG5(Bug::end(__PRETTY_FUNCTION__));P(x, y))
+//
+//#define THING(x, y) Bug::thing_counter(__PRETTY_FUNCTION__);P(x, y))
+//#define THING1(x, y) BUG1(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y))
+//#define THING2(x, y) BUG2(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y))
+//#define THING3(x, y) BUG3(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y))
+//#define THING4(x, y) BUG4(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y))
+//#define THING5(x, y) BUG5(Bug::thing_counter(__PRETTY_FUNCTION__));P(x, y))
+//
+//#define MEM(x, y) Bug::display_memory(" after " + String(__PRETTY_FUNCTION__));P(x, y))
+//#define MEM1(x, y) BUG1(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y))
+//#define MEM2(x, y) BUG2(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y))
+//#define MEM3(x, y) BUG3(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y))
+//#define MEM4(x, y) BUG4(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y))
+//#define MEM5(x, y) BUG5(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)));P(x, y))
+
 #define START Bug::start(__PRETTY_FUNCTION__)
 #define START1 BUG1(Bug::start(__PRETTY_FUNCTION__))
 #define START2 BUG2(Bug::start(__PRETTY_FUNCTION__))
@@ -51,6 +107,19 @@
 #define MEM4 BUG4(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)))
 #define MEM5 BUG5(Bug::display_memory(" after " + String(__PRETTY_FUNCTION__)))
 
+//#define P(x, y, z) P(x);P(y);P(z)
+//#define P1(x, y, z) BUG1(P(x);P(y);P(z))
+//#define P2(x, y, z) BUG2(P(x);P(y);P(z))
+//#define P3(x, y, z) BUG3(P(x);P(y);P(z))
+//#define P4(x, y, z) BUG4(P(x);P(y);P(z))
+//#define P5(x, y, z) BUG5(P(x);P(y);P(z))
+//
+//#define P(x, y) do{P(x);P(y);}while(0)
+//#define P1(x, y) BUG1(P(x);P(y))
+//#define P2(x, y) BUG2(P(x);P(y))
+//#define P3(x, y) BUG3(P(x);P(y))
+//#define P4(x, y) BUG4(P(x);P(y))
+//#define P5(x, y) BUG5(P(x);P(y))
 
 #define P(x) Bug::print(#x, x)
 #define P1(x) BUG1(Bug::print(#x, x))
@@ -129,6 +198,8 @@ public:
 	static inline void print(String new_string, float value);
 
 	static inline void print(String new_string, int value);
+
+	static inline void print(String new_string, byte value);
 
 	static inline void check_memory(String msg);
 };
@@ -233,12 +304,17 @@ inline void Bug::thing_counter(String new_string)
 
 inline void Bug::print(String new_string, float value)
 {
-	mySerial.println(new_string + ": " + String(value));
+	mySerial.println("   " + new_string + ": " + String(value));
 }
 
 inline void Bug::print(String new_string, int value)
 {
-	mySerial.println(new_string + ": " + String(value));
+	mySerial.println("   " + new_string + ": " + String(value));
+}
+
+inline void Bug::print(String new_string, byte value)
+{
+	mySerial.println("   " + new_string + ": " + String(value));
 }
 
 inline void Bug::check_memory(String msg = "") {

@@ -4,47 +4,27 @@
  Author:	pikipupiba
 */
 
-// the setup function runs once when you press reset or power the board
-#include "arduino.h"
-#include <bitset>
-#include <vector>
-#include <string>
-#include <FastLED.h>
-#include <MIDI.h>
-#include <HardwareSerial.h>
-
 #include "Global_Definitions.h"
+
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 HardwareSerial mySerial(1);
 //HardwareSerial MIDI_SERIAL(0);
 
-#include "Bug.h"
-
-//MIDI_CREATE_INSTANCE(HardwareSerial, MIDI_SERIAL, MIDI);
-MIDI_CREATE_DEFAULT_INSTANCE();
-
 void setup()
 {
 	delay(500);
-
-
-	Midi_Controller::init(MIDI);
-	//MIDI.begin();
-
+	//Midi_Controller::init();
 	delay(500);
-
 	Serial.begin(115200);
 	//MIDI_SERIAL.begin(115200);
-
 	delay(500);
-
 	mySerial.begin(115200, SERIAL_8N1, 26, 27);
-
-	// Delay to allow uploader time to fix unstable software.
-	// Reduce or remove this for production.
 	delay(500);
 
 	START1;
+
+	mySerial.println("Starting it up!");
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -82,46 +62,63 @@ void setup()
 			break;
 		}
 	}
+	THING1;
+	MIDI.setHandleNoteOff(Midi_Controller::handleNoteOff);
+	THING1;
+	MIDI.setHandleNoteOn(Midi_Controller::handleNoteOn);
+	THING1;
+	MIDI.setHandleAfterTouchPoly(Midi_Controller::handleAfterTouchPoly);
+	THING1;
+	MIDI.setHandleControlChange(Midi_Controller::handleControlChange);
+	THING1;
+	MIDI.setHandleProgramChange(Midi_Controller::handleProgramChange);
+	THING1;
+	MIDI.setHandleAfterTouchChannel(Midi_Controller::handleAfterTouchChannel);
+	THING1;
+	MIDI.setHandlePitchBend(Midi_Controller::handlePitchBend);
+	THING1;
+	MIDI.setHandleSystemExclusive(Midi_Controller::handleSystemExclusive);
+	THING1;
+	MIDI.setHandleTimeCodeQuarterFrame(Midi_Controller::handleTimeCodeQuarterFrame);
+	THING1;
+	MIDI.setHandleSongPosition(Midi_Controller::handleSongPosition);
+	THING1;
+	MIDI.setHandleSongSelect(Midi_Controller::handleSongSelect);
+	THING1;
+	MIDI.setHandleTuneRequest(Midi_Controller::handleTuneRequest);
+	THING1;
+	MIDI.setHandleClock(Midi_Controller::handleClock);
+	THING1;
+	MIDI.setHandleStart(Midi_Controller::handleStart);
+	THING1;
+	MIDI.setHandleContinue(Midi_Controller::handleContinue);
+	THING1;
+	MIDI.setHandleStop(Midi_Controller::handleStop);
+	THING1;
+	MIDI.setHandleActiveSensing(Midi_Controller::handleActiveSensing);
+	THING1;
+	MIDI.setHandleSystemReset(Midi_Controller::handleSystemReset);
+	THING1;
+	MIDI.begin(MIDI_CHANNEL_OMNI);
 
 	END1;
 }
 
-int hue = 0;
-
-// the loop function runs over and over again until power down or reset
 void loop()
 {
-	START3;
+	//START3;
+
+	mySerial.println("BUTTS THAT POOP");
+
+	delay(1000);
 
 	gleds.fill_solid(CRGB::Black);
 
 	Universe::loop();
 
-	if (MIDI.read())
-	{
-		mySerial.println("READING A THING");
-	}
-
-	EVERY_N_MILLISECONDS(2000)
-	{
-		static bool on = false;
-
-		mySerial.println("WE DID IT");
-
-		if (!on)
-		{
-			on = true;
-			Midi_Controller::handleNoteOn(0, hue, 255);
-		}
-		else
-		{
-			on = false;
-			Midi_Controller::handleNoteOff(0, hue, 255);
-		}
-
-		//MIDI.sendNoteOn(42, 127, 1);
-	}
-
+	//Midi_Controller::loop();
+	MIDI.read();
+	
 	Tweener::update();
 
 	gchannels[0]->render();
@@ -130,5 +127,5 @@ void loop()
 	
 	FastLED.countFPS();
 
-	END3;
+	//END3;
 }

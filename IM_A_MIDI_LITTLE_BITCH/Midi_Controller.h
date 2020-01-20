@@ -5,7 +5,9 @@
 class Midi_Controller
 {
 public:
-	static void init(midi::MidiInterface<HardwareSerial>& MIDI);
+	static void init();
+
+	static void loop();
 
 public:
 	static void handleNoteOff(byte channel, byte note, byte velocity);
@@ -27,4 +29,3 @@ public:
 	static void handleActiveSensing(void);
 	static void handleSystemReset(void);
 };
-

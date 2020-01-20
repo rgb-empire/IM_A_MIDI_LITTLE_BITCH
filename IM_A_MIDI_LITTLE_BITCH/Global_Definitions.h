@@ -7,7 +7,6 @@
 #include <FastLED.h>
 #include <MIDI.h>
 #include <HardwareSerial.h>
-//#include <SoftwareSerial.h>
 
 extern HardwareSerial mySerial;
 //extern HardwareSerial MIDI_SERIAL;
