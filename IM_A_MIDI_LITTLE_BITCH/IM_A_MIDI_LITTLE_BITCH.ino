@@ -6,7 +6,16 @@
 
 #include "Global_Definitions.h"
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+struct MySettings : public midi::DefaultSettings
+{
+	static const bool Use1ByteParsing = false;
+	static const long BaudRate = 256000;
+	static const unsigned SysExMaxSize = 1024; // Accept SysEx messages up to 1024 bytes long.
+};
+
+MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
+
+//MIDI_CREATE_DEFAULT_INSTANCE();
 
 HardwareSerial mySerial(1);
 //HardwareSerial MIDI_SERIAL(0);
@@ -16,7 +25,7 @@ void setup()
 	delay(500);
 	//Midi_Controller::init();
 	delay(500);
-	Serial.begin(115200);
+	Serial.begin(256000);
 	//MIDI_SERIAL.begin(115200);
 	delay(500);
 	mySerial.begin(115200, SERIAL_8N1, 26, 27);
@@ -99,7 +108,9 @@ void setup()
 	THING1;
 	MIDI.setHandleSystemReset(Midi_Controller::handleSystemReset);
 	THING1;
+
 	MIDI.begin(MIDI_CHANNEL_OMNI);
+	MIDI.turnThruOff();
 
 	END1;
 }
@@ -110,7 +121,7 @@ void loop()
 
 	mySerial.println("BUTTS THAT POOP");
 
-	delay(1000);
+	delay(10);
 
 	gleds.fill_solid(CRGB::Black);
 
